@@ -220,14 +220,14 @@
 		 *  @param $site    String   Site URL available in GWT Account.
 		 *  @param $savepath  String   Optional path to save CSV to (no trailing slash!).
 		 */
-			public function DownloadCSV($site, $savepath=".")
+			public function DownloadCSV($site, $savepath=".", $uisite)
 			{
 				if(self::IsLoggedIn() === true) {
 					$downloadUrls = self::GetDownloadUrls($site);
-					$filename = parse_url($site, PHP_URL_HOST) ."-". date("Ymd-His");
+					$filename = parse_url($site, PHP_URL_HOST) ."-". date("Ymd-His"); 
 					$tables = $this->_tables;
 					foreach($tables as $table) {
-						$finalName = "$savepath/$table-$filename-" . $this->_daterange[0] . ".csv";
+						$finalName = "$savepath/$table-$uisite-" . $this->_daterange[0] . ".csv";
 						$finalUrl = $downloadUrls[$table] ."&prop=ALL&db=%s&de=%s&more=true";
 						$finalUrl = sprintf($finalUrl, $this->_daterange[0], $this->_daterange[1]);
 						$data = self::GetData($finalUrl);
