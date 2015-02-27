@@ -8,11 +8,11 @@ The script requires that the Google account allows "unsecure apps" to access dat
 
 ## Update 27-02-15
 
-*Added option to enter "All" as sitestring
-**If the `$sitestring` variable is set to `All` then the script will loop through all sites attached to the account
-**For each site the script will parse through csvs to create a concatenated ranking file by day
-*Fixed parser to allow folder-structure based WMT
-**For example WMT accounts which are divided by region via `/en-gb/`, `/en-ie/` etc it will correctly detect folder and parse throught he correct files - `GWTdata.php` modified to allow this functionality
-*Fixed first line of concatenated output to correctly show the folder plus site ouput
-*Fixed some console output issues
-*Tweaked sleep rate to prevent being frozen out of WMT api
+* Added option to enter "All" as sitestring
+ * If the `$sitestring` variable is set to `All` then the script will loop through all sites attached to the account
+ * For each site the script will parse through csvs to create a concatenated ranking file by day
+* Fixed parser to allow folder-structure based WMT
+ * For example WMT accounts which are divided by region via `/en-gb/`, `/en-ie/` etc it will correctly detect folder and parse throught he correct files - `GWTdata.php` modified to allow this functionality
+* Fixed first line of concatenated output to correctly show the folder plus site ouput
+* Fixed some console output issues
+* Tweaked sleep rate to prevent being frozen out of WMT api
