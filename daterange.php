@@ -2,11 +2,12 @@
 	include 'gwtdata.php';
 	try {
 		$email = "example@example.com";
-		$passwd = "****************";
+		$passwd = "*********";
 		$sitestring = "all";
 
 		$cwd = getcwd();
-		$folder = str_replace("/", "-", $sitestring) . "-" . date("Ymd-His");
+		$uiemail = preg_replace("#\@.*#", "", $email);
+		$folder =  $uiemail . "-" . str_ireplace(["http://","https://","/"], ["","","-"], $sitestring) . date("Ymd-His");
 		$savepath = $cwd . "/" . $folder;
 		
 		if($sitestring == "all"){
@@ -23,7 +24,7 @@
 		if($gdata->LogIn($email, $passwd) === true){
 			$sites = $gdata->GetSites();
 			foreach($sites as $site){
-				$uisite = str_ireplace(["www.","http://","/"], ["","","-"], $site);
+				$uisite = str_ireplace(["www.","http://","/","https://"], ["","","-",""], $site);
 				if(strpos($site, $sitestring) !== FALSE){
 					print("\r\nProcessing " . $site . "\r\n");
 					$ns ++;
@@ -39,9 +40,10 @@
 						sleep(1.75);
 					}
 					
-############################################
-		## Start parsing csvs ##
-############################################
+			############################################
+					## Start parsing csvs ##
+			############################################
+
 					chdir($folder);
 					$files = glob("*.csv");
 
@@ -89,8 +91,10 @@
 							}
 						}
 					}
-					file_put_contents($uisite . "-" . date("Ymd-His") . "-concat.csv", $output);
-					$output = "";
+					if($tnl > 0){
+						file_put_contents($uisite . "-" . date("Ymd-His") . "-concat.csv", $output);
+					}					
+					$output = null;
 					chdir($cwd);
 
 					print("\r\nSleeping for 20 seconds...");
