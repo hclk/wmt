@@ -2,8 +2,9 @@
 	include 'gwtdata.php';
 	try {
 		$email = "example@example.com";
-		$passwd = "*********";
+		$passwd = "**********";
 		$sitestring = "all";
+		$filter = "WEB";
 
 		$cwd = getcwd();
 		$uiemail = preg_replace("#\@.*#", "", $email);
@@ -36,7 +37,7 @@
 						$nd++;
 						printf("\rProcessing day %s", $nd);
 						$gdata->SetDaterange($date);
-						$gdata->DownloadCSV($site, $savepath, $uisite);
+						$gdata->DownloadCSV($site, $savepath, $uisite, $filter);
 						sleep(1.75);
 					}
 					
