@@ -6,6 +6,14 @@ CSV files generated are then concatenated automatically into single files by sit
 
 The script requires that the Google account allows "unsecure apps" to access data. Do this by navigating over your account name in the top right of any Webmaster Tools screen, click "Account" then enable the "Allow unsecure app access" option in the menu.
 
+Intructions:
+* Edit `daterange.php` opening variables to contain your email and password for the relevant WMT account
+* Edit variable `$sitestring` to contain the string you wish to include analysis for: `All` will go through all attached sites
+ * Example: `$sitestring = "topmugs";` will return all sites which contain "topmugs"
+* Edit variable `$filter` to filter results by platform
+ * Example: `$filter = "WEB";` will return only web results
+ * Valid strings are: `ALL`, `WEB`, `MOBILE`, `IMAGE`, `VIDEO`
+
 ## Update 27-02-15
 
 * Added option to enter "All" as sitestring
