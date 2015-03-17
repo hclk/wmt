@@ -1,7 +1,7 @@
 <?php
 	include 'gwtdata.php';
 	try {
-		$email = "example@example.com";
+		$email = "example@email.com";
 		$passwd = "**********";
 		$sitestring = "all";
 		$filter = "WEB";
@@ -46,7 +46,7 @@
 			############################################
 
 					chdir($folder);
-					$files = glob("*.csv");
+					$files = glob("TOP_QUERIES-".$uisite."*.csv");
 
 					$tnl = 0;
 					
@@ -93,7 +93,10 @@
 						}
 					}
 					if($tnl > 0){
-						file_put_contents($uisite . "-" . date("Ymd-His") . "-concat.csv", $output);
+						if(!(file_exists("concats"))){
+							mkdir("concats");
+						}
+						file_put_contents("concats/". $uisite . "-" . date("Ymd-His") . "-concat.csv", $output);
 					}					
 					$output = null;
 					chdir($cwd);
